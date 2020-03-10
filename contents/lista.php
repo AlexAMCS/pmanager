@@ -32,15 +32,15 @@
 					$tarResp = $conn->query($sql);
 					$numTarefas = $tarResp->fetch_assoc()['total'];
 			?>
-			<tr class='projeto' id='<?= $projeto['id'] ?>'>
+			<tr>
 				<td><?= $projeto['id'] ?></td>
 				<td><?= $projeto['titulo'] ?></td>
 				<td><?= $projeto['data'] ?></td>
 				<td><?= $numTarefas ?></td>
 				<td class='d-none'><?= $projeto['desc'] ?></td>
 				<td class='text-center'>&#x1F4CB;</td>
-				<td class='dialog-open cursor-pointer text-center' data-toggle='modal'
-					data-target='#formulario'>
+				<td class='dialog-open cursor-pointer text-center projeto'
+					id='<?= $projeto['id'] ?>' data-toggle='modal' data-target='#formulario'>
 					
 					&#x1F589;
 					

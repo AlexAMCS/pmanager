@@ -1,6 +1,6 @@
 <?php
 	$host = 'localhost';
-	$port = '3307';
+	$port = '3308';
 	$db = 'pmanager';
 	$user = 'pmanager';
 	$pass = 'senhaprojeto';

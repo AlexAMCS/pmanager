@@ -55,9 +55,9 @@ function formSet(elemento) {
 	if(editFlag)	{
 		// Dados
 		$('#objId').html(editFlag);
-		$('#formTitle').val(elemento.children[1].innerHTML);
-		if(pFlag) $('#formDate').val(elemento.children[2].innerHTML);
-		$('#formDesc').val(elemento.children[4].innerHTML);
+		$('#formTitle').val(elemento.parentNode.children[1].innerHTML);
+		if(pFlag) $('#formDate').val(elemento.parentNode.children[2].innerHTML);
+		$('#formDesc').val(elemento.parentNode.children[4].innerHTML);
 
 		
 		// Botões
@@ -94,7 +94,7 @@ function loadList() {
 			}
 	}).then(function afterLoad() {
 		$('.dialog-open').click(function gerarDialog() {
-			formSet($(this).parent()[0]);
+			formSet(this);
 		});
 	});
 }
