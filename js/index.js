@@ -86,7 +86,7 @@ function formSet(elemento) {
 	return 0;
 }
 
-function loadList() {
+function loadProjectList() {
 	$.ajax('contents/lista.php',{
 			method: 'GET',
 			success: function retornoAjax(ret) {
@@ -99,10 +99,18 @@ function loadList() {
 	});
 }
 
+function loadTaskList() {
+	
+	
+}
+
 $(function DOMReady() {
-	// Carrega via AJAX a lista de tarefas e aplica eventos via Promise.
-	loadList();
-		
+	// Carrega via AJAX a lista de tarefas e aplica eventos onClick via Promise.
+	loadProjectList();
+	
+	// Carregando lista de tarefas.
+	loadTaskList();
+	
 	// AJAX de modificações no SGBD.
 	$('.ajax').click(function enviaDados() {
 		if(this.matches('#submit')) {
@@ -124,11 +132,15 @@ $(function DOMReady() {
 			method: 'POST',
 			success: function retornoAjax(ret) {
 				resposta = JSON.parse(ret) // Trata o retorno.
+				// Retorna para o usuário alguma mensagem.
 				alert(resposta[1]);
+				// Se foi uma resposta válida, fecha o modal, remove e recarrega a
+				// lista. De tarefas. Otimizável para recarregar apenas o elemento 
+				// alterado, se a lista atual não for vazia.
 				if(resposta[0] >= 200 && resposta[0] < 300) {
 					$('#formulario').modal('hide');
-					$('#lista').remove();
-					loadList();
+					$('#listaProjetos').remove();
+					loadProjectList();
 				}
 			}
 		});

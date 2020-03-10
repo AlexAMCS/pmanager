@@ -1,4 +1,4 @@
-<main class='container text-light mt-2' id='lista'>
+<main class='container text-light mt-2' id='listaProjetos'>
 <?php
 	require('config.php'); // Informações de conexão ao SGBD.
 	$sql = "SELECT * FROM projetos
@@ -18,15 +18,16 @@
 				<th>Data Prevista</th>
 				<th>Tarefas Cadastradas</th>
 				<th class='d-none'>Descrição</th>
-				<th>Adicionar Tarefa</th>
+				<th>Gerenciar Tarefas</th>
 				<th>Editar</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php
 				while($projeto = $proResp->fetch_assoc()):
-					// Otimizável para uma só consulta, em casos que haja muitas tarefas
-					// ou projetos.
+					// TODO: Essa query ainda pode ser otimizada para uma só consulta, em
+					// casos que haja muitas tarefas ou projetos, ao obter todo o conjunto
+					// de tarefas, ou seccionar em partes menores.
 					$sql = "SELECT count(*) as total FROM tarefas
 									WHERE pid = {$projeto['id']}";
 					$tarResp = $conn->query($sql);
@@ -38,7 +39,8 @@
 				<td><?= $projeto['data'] ?></td>
 				<td><?= $numTarefas ?></td>
 				<td class='d-none'><?= $projeto['desc'] ?></td>
-				<td class='text-center'>&#x1F4CB;</td>
+				<td class='text-center cursor-pointer tarefas-open' data-toogle='modal'
+				data-target='#listaTarefas'>&#x1F4CB;</td>
 				<td class='dialog-open cursor-pointer text-center projeto'
 					id='<?= $projeto['id'] ?>' data-toggle='modal' data-target='#formulario'>
 					
@@ -49,5 +51,6 @@
 			<?php endwhile; ?>
 		</tbody>
 	</table>
+	<?php require('tarefas.htm'); ?>
 <?php endif; ?>
 </main>

@@ -19,7 +19,8 @@
 	</head>
 	<body class='bg-dark'>
 		<?php require('contents/header.htm'); ?>
-		<!-- TODO: Criar elemento de 'loading' enquanto o AJAX processa -->
+		<!-- 	TODO: Criar elemento de 'loading' enquanto o servidor processa a 
+					requisição AJAX -->
 		<?php require('contents/formulario.php'); ?>
 	</body>
 </html>
