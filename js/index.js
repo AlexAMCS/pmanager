@@ -1,29 +1,34 @@
 function formSet(elemento) {
 	// Edita o formulário modal de acordo com o elemento de origem.
 	// Como os formulário de tarefa e projeto, seja de edição ou criação,
-	// são exstremamente similares, faz mais sentido manter um formulário só 
+	// são extremamente similares, faz mais sentido manter um formulário só 
 	// e editar as etiquetas e outras pecularidades via JS.
 
-	// Flag para o formulário de tarefas (para esconder elementos).
-	tflag = 0;
+	// Flag que determina o tipo de objeto sendo modificado (Projeto/Tarefa).
+	pFlag = 0;
 	
-	// Flag de edição.
+	// Flag de edição. Muda o texto do botão de salvar, e identifica o id
+	// do projeto.
 	editFlag = 0;
 	
+	// TODO: Combinar flags.
+
 	// Editar projeto.
 	if(elemento.matches('.projeto')) {
-		editFlag = 1;
-		diagTitle = 'Editando Projeto #' + elemento.id;
+		pFlag = 1
+		editFlag = elemento.id;
+		diagTitle = 'Editando Projeto #' + editFlag;
 		
 	}
 	// Editar tarefa.
 	else if(elemento.matches('.tarefa')) {
-		editFlag = 1;
 		tflag = 1;
-		diagTitle = 'Editando Tarefa #' + elemento.id;
+		editFlag = elemento.id;
+		diagTitle = 'Editando Tarefa #' + editFlag;
 	}
 	// Criar projeto.
 	else if(elemento.matches('#novoProjeto')) {
+		pFlag = 1
 		diagTitle = 'Criando novo projeto';
 	}
 	// Criar tarefa.
@@ -36,42 +41,98 @@ function formSet(elemento) {
 		return 1;
 	}
 	
-	// Ajustando o formulário.
-
+	//##########################
+	//# Ajustando o formulário #
+	//##########################
+	
+	// Título do dialog
 	$('#formulario #diagTitle').html(diagTitle);
 	
-	if(editFlag == 1) {
+	// Tipo.
+	$('#formTipo').html(pFlag);
+	
+	// Ajusta botões e insere dados de edição.
+	if(editFlag)	{
+		// Dados
+		$('#objId').html(editFlag);
+		$('#formTitle').val(elemento.children[1].innerHTML);
+		if(pFlag) $('#formDate').val(elemento.children[2].innerHTML);
+		$('#formDesc').val(elemento.children[4].innerHTML);
+
 		
-			
-		}
+		// Botões
+		$('#submit').html('Salvar');
+		$('#delete').removeClass('d-none');
 	}
-	//$('#formulario #formTitle').attr('placeholder',valores['tituloPH']);
+	else 	{
+		$('#objId').html(0);
+		$('#formTitle').val('');
+		if(pFlag) $('#formDate').val('');
+		$('#formDesc').val('');
+		
+		$('#submit').html('Criar');
+		$('#delete').addClass('d-none');
+		
+	}
+	
+	// Linha de data.
+	if(pFlag == 1) {
+		$('#formDateRow').removeClass('d-none');
+		$('#formDate').attr('required','');
+	}
+	
+	if(pFlag == 0) $('#formDateRow').addClass('d-none');
+	
 	return 0;
 }
 
-$(function DOMReady() {
-	$('.dialog-open').click(function gerarDialog() {
-		formSet(this)
+function loadList() {
+	$.ajax('contents/lista.php',{
+			method: 'GET',
+			success: function retornoAjax(ret) {
+				$(ret).insertAfter('header'); // Trata o retorno.
+			}
+	}).then(function afterLoad() {
+		$('.dialog-open').click(function gerarDialog() {
+			formSet($(this).parent()[0]);
+		});
 	});
-	
-	
-	$('#submit').click(function enviaDados() {
-		$.ajax('ajax/ajax.php',{
-			data: {
+}
+
+$(function DOMReady() {
+	// Carrega via AJAX a lista de tarefas e aplica eventos via Promise.
+	loadList();
+		
+	// AJAX de modificações no SGBD.
+	$('.ajax').click(function enviaDados() {
+		if(this.matches('#submit')) {
+			dados = {
+				id:			$('#objId').html(),
 				titulo: $('#formTitle').val(),
-				desc: $('#formDesc').val(),
-				data: $('#formDate').val(),
-				tipo: 1
-			},
+				desc: 	$('#formDesc').val(),
+				data: 	$('#formDate').val(),
+				tipo: 	$('#formTipo').html()
+			}
+		}
+		else dados = { 
+			id: $('#objId').html(),
+			tipo: parseInt($('#formTipo').html(),10) + 2
+		}
+		
+		$.ajax('ajax/ajax.php',{
+			data: dados,
 			method: 'POST',
-			success: function retornoAjax(valor, status) {
-				// Trata o retorno.
-				alert(status);
+			success: function retornoAjax(ret) {
+				resposta = JSON.parse(ret) // Trata o retorno.
+				alert(resposta[1]);
+				if(resposta[0] >= 200 && resposta[0] < 300) {
+					$('#formulario').modal('hide');
+					$('#lista').remove();
+					loadList();
+				}
 			}
 		});
 		
-		
-		
-		
+			
 	});
 });

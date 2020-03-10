@@ -12,17 +12,17 @@
 					<a class='nav-link' href='#'>Lista<span class='sr-only'>(current)</span></a>
 				</li>
 				<li class='nav-item'>
-					<span class='nav-link dialog-open' id='novoProjeto'
+					<span class='nav-link dialog-open cursor-pointer' id='novoProjeto'
 						data-toggle='modal' data-target='#formulario'>Novo Projeto</span>
 				</li>
 				<li class='nav-item'>
-					<span class='nav-link'>Excluir Projetos</span>
+					<span class='nav-link disabled'>Excluir Projetos</span>
 				</li>
 			</ul>
-			<form class='form-inline my-2 my-lg-0'>
+			<form class='form-inline my-2 my-lg-0' disabled>
 				<input class='form-control mr-sm-2' id='buscaTarefa' type='search'
-					placeholder='Buscar tarefa por título'>
-				<button id='btnTarefa' class='btn btn-dark my-2 my-sm-0' type='submit'>
+					placeholder='Buscar tarefa por título' disabled>
+				<button id='btnTarefa' class='btn btn-dark my-2 my-sm-0 disabled' type='submit'>
 					Buscar
 				</button>
 			</form>

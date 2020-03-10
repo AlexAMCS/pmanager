@@ -1,6 +1,3 @@
-<?php	
-	require('contents/config.php'); // Informações de conexão ao SGBD.
-?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -22,7 +19,6 @@
 	</head>
 	<body class='bg-dark'>
 		<?php require('contents/header.htm'); ?>
-		<?php require('contents/lista.php'); ?>
 		<?php require('contents/formulario.php'); ?>
 	</body>
 </html>
