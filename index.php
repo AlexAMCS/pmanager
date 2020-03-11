@@ -14,13 +14,15 @@
 		<script src='js/popper-1.16.0.min.js'></script>
 		<script src='js/bootstrap-4.4.1.min.js'></script>
 		
-		<!-- Script Local-->
+		<!-- Script Local -->
 		<script src='js/index.js'></script>
 	</head>
 	<body class='bg-dark'>
 		<?php require('contents/header.htm'); ?>
-		<!-- 	TODO: Criar elemento de 'loading' enquanto o servidor processa a 
-					requisição AJAX -->
-		<?php require('contents/formulario.php'); ?>
+		<!-- 	TODO:
+						[UI] Criar elemento de 'loading' enquanto o servidor processa a 
+						requisição AJAX.
+		-->
+		<?php require('contents/form.htm'); ?>
 	</body>
 </html>

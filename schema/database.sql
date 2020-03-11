@@ -33,7 +33,7 @@ CREATE TABLE `tarefas` (
   `desc` varchar(300) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'Descrição da tarefa.',
   PRIMARY KEY (`id`),
   KEY `Tarefa-Projeto` (`pid`),
-  CONSTRAINT `Tarefa-Projeto` FOREIGN KEY (`pid`) REFERENCES `projetos` (`id`)
+  CONSTRAINT `Tarefa-Projeto` FOREIGN KEY (`pid`) REFERENCES `projetos` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

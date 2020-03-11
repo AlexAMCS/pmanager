@@ -2,27 +2,27 @@
 	<nav class='navbar navbar-expand-lg navbar-dark bg-primary'>
 		<span class='navbar-brand'>PManager</span>
 		<button class='navbar-toggler' type='button' data-toggle='collapse'
-			data-target='#navbarConteudo'>
+			data-target='#navbarContents'>
 			<span class='navbar-toggler-icon'></span>
 		</button>
 
-		<div class='collapse navbar-collapse' id='navbarConteudo'>
+		<div class='collapse navbar-collapse' id='navbarContents'>
 			<ul class='navbar-nav mr-auto'>
 				<li class='nav-item active'>
-					<a class='nav-link' href='#'>Lista<span class='sr-only'>(current)</span></a>
+					<a class='nav-link' href='?'>Lista de Projetos<span class='sr-only'>(current)</span></a>
 				</li>
 				<li class='nav-item'>
-					<span class='nav-link dialog-open cursor-pointer' id='novoProjeto'
-						data-toggle='modal' data-target='#formulario'>Novo Projeto</span>
+					<span class='nav-link cursor-pointer' id='newProject'
+						data-toggle='modal' data-target='#form'>Novo Projeto</span>
 				</li>
 				<li class='nav-item'>
-					<span class='nav-link disabled'>Excluir Projetos</span>
+					<span class='nav-link d-none disabled'>Excluir Projetos</span>
 				</li>
 			</ul>
 			<form class='form-inline my-2 my-lg-0' disabled>
-				<input class='form-control mr-sm-2' id='buscaTarefa' type='search'
+				<input class='form-control mr-sm-2' id='taskSearch' type='search'
 					placeholder='Buscar tarefa por título' disabled>
-				<button id='btnTarefa' class='btn btn-dark my-2 my-sm-0 disabled' type='submit'>
+				<button id='btnTaskSearch' class='btn btn-dark my-2 my-sm-0 disabled' type='submit'>
 					Buscar
 				</button>
 			</form>
