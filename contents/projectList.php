@@ -45,9 +45,9 @@
 			<tr>
 				<td><?= $project['id'] ?></td>
 				<td><?= $project['titulo'] ?></td>
+				<td class='d-none'><?= $project['desc'] ?></td>
 				<td><?= $project['data'] ?></td>
 				<td><?= $taskCount ?></td>
-				<td class='d-none'><?= $project['desc'] ?></td>
 				<td class='text-center cursor-pointer task-open'>&#x1F4CB;</td>
 				<td class='dialog-open cursor-pointer text-center project'
 					id='<?= $project['id'] ?>' data-toggle='modal' data-target='#form'>
