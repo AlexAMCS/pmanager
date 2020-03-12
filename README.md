@@ -1,7 +1,4 @@
 # pmanager
-
-Última atualização: 09/03/2020
-
 Sistema básico para gerência de projetos.
 
 Feito com backend PHP 7.4.3, frontend em HTML 5, CSS 3 e JS (ECMAScript 2019), usando as bibliotecas Bootstrap (para componentes responsiivos) e jQuery (para o wrapper de XMLHttpRequest() e seletores CSS), usando como SGBD MariaDB 10.4.11 e HTTPd Apache 2.4.41 (pacote 
