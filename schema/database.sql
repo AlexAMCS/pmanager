@@ -27,7 +27,7 @@ CREATE TABLE `projetos` (
 DROP TABLE IF EXISTS `tarefas`;
 
 CREATE TABLE `tarefas` (
-  `id` int(11) NOT NULL COMMENT 'ID da tarefa.',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da tarefa.',
   `pid` int(11) DEFAULT NULL COMMENT 'ID do projeto.',
   `titulo` varchar(200) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'Título da tarefa.',
   `desc` varchar(300) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'Descrição da tarefa.',
