@@ -1,4 +1,6 @@
 <?php
+	// TODO: [Modularização] Dividir o arquivo em módulos, para facilitar a 
+	// manutenção do código. Criar pasta própria.
 	// Informações de conexão ao SGBD e funções de retorno.
 	require('../contents/config.php'); 
 	
